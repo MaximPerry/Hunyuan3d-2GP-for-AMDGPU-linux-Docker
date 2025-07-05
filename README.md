@@ -1,4 +1,4 @@
-#Hunyuan3D-2 for AMDGPU in linux
+# Hunyuan3D-2 for AMDGPU in linux
 This is a shell script to download and configure Hunyuan3D-2 locally on a linux computer with an AMD GPU.
 To make it works yo must have previously installed ROCM (i've used ROCM 6.4.1 but maybe it can work with other versions).
 The main problem to make it work is the compilation step of custom_rasterizer, so i provide python wheels compiled for python version 3.10 and 3.13.
