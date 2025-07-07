@@ -30,6 +30,9 @@ cd Hunyuan3d-2-for-AMDGPU-linux
 
 Espera a que el Script de installación descarge e instale todas las dependencias.
 Te preguntará que versión de Python quieres utilizar y que puerto vas a seleccionar para la applicación Gradio local.
+## Problemas conocidos
+La generación de modelos fallará si en la ruta desde la que se ejecuta Hunyuan3D-2 contiene espacios. Creo que está relacionado con este problema [[Issue]: ROCm 6.x doesn't work with space in the path #4329
+](https://github.com/ROCm/ROCm/issues/4329)
 
 ## Ejecución
 Una vez instalado, deberías tener dos archivos .desktop en la carpeta Hunyuan3d-2-for-AMDGPU-linux.
