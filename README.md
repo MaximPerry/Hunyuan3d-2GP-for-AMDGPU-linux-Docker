@@ -30,3 +30,7 @@ You will be asked to select which python version you want to use and the port yo
 ## Execution
 Once installed, you will have two .desktop files in the Hunyuan3d-2-for-AMDGPU-linux Folder.
 These files will run Hunyuan3D-2 in single view mode or multiview mode. Single view mode will also be able to generate 3D models from text input.
+## Known issues
+Model generation will fail if the folder from wich you run Hunyuan got spaces.
+I think is related to this issue [[Issue]: ROCm 6.x doesn't work with space in the path #4329
+](https://github.com/ROCm/ROCm/issues/4329)
