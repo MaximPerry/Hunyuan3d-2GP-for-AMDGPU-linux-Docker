@@ -40,7 +40,7 @@ echo -e "[Desktop Entry]\nVersion=1.0\nType=Application\nName=Hunyuan3D-2\nComme
 chmod +x Hunyuan3D-2.desktop
 echo -e "[Desktop Entry]\nVersion=1.0\nType=Application\nName=Hunyuan3D-2 Multiview\nComment=\nExec=$PWD/hunyuan-mv.sh\nIcon=$PWD/icon.png\nPath=$PWD/Hunyuan3D-2/\nTerminal=true\nStartupNotify=false" >> Hunyuan3D-2-Multiview.desktop
 chmod +x Hunyuan3D-2-Multiview.desktop
-rm -rf pytars
+rm -rf pyvers
 rm -rf wheels
 rm -rf flash-attention
 mv -f gradio_app.py Hunyuan3D-2/gradio_app.py
