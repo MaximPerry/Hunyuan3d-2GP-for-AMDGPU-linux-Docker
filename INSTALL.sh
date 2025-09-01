@@ -4,7 +4,7 @@ yad --center --borders=20 --title="Select your Python Version"  --text="Wich Pyt
 pyver=$?
 tars=("py310.tar.xz" "py313.tar.xz")
 pydir=("py310" "py313")
-tar xvf pytars/${tars[$pyver]}
+tar xvf pyvers/${tars[$pyver]}
 export PATH="$PWD/${pydir[$pyver]}/bin:$PATH"
 pip3 install --upgrade pip
 python3 -m pip install --pre torch==2.8.0.dev20250525+rocm6.4 torchvision==0.22.0.dev20250525+rocm6.4 torchaudio==2.6.0.dev20250525+rocm6.4 --index-url https://download.pytorch.org/whl/nightly/rocm6.4
