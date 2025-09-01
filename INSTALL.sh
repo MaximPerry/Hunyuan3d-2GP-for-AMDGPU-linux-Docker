@@ -7,7 +7,7 @@ pydir=("py310" "py313")
 tar xvf pyvers/${tars[$pyver]}
 export PATH="$PWD/${pydir[$pyver]}/bin:$PATH"
 pip3 install --upgrade pip
-python3 -m pip install --pre torch==2.8.0.dev20250525+rocm6.4 torchvision==0.22.0.dev20250525+rocm6.4 torchaudio==2.6.0.dev20250525+rocm6.4 --index-url https://download.pytorch.org/whl/nightly/rocm6.4
+python3 -m pip install --pre torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm6.4
 python3 -m pip install -r requirements.txt
 export FLASH_ATTENTION_TRITON_AMD_ENABLE="TRUE"
 export GPU_ARCHS=$gpu
