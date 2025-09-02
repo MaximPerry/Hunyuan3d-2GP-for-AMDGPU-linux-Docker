@@ -34,6 +34,10 @@ Te preguntará que versión de Python quieres utilizar y que puerto vas a selecc
 La generación de modelos fallará si en la ruta desde la que se ejecuta Hunyuan3D-2 contiene espacios. Creo que está relacionado con este problema [[Issue]: ROCm 6.x doesn't work with space in the path #4329
 ](https://github.com/ROCm/ROCm/issues/4329)
 
+La versión actual de Torch 2.8 no funciona. La versión 2.8.0.dev20250525+rocm6.4 funcionaba pero ya no está disponible. Con torch 2.7.0 funciona.
+
+La generación de texturas falla con gpu integrada+dedicada. Desactivar la tarjeta integrada en la Bios arregla este fallo.
+
 ## Ejecución
 Una vez instalado, deberías tener dos archivos .desktop en la carpeta Hunyuan3d-2-for-AMDGPU-linux.
 Estos archivos ejecutarán Hunyuan3D-2 en su modo de una única imagen o multivista. EL modo de imagen única también puede generar modelos 3D a partir de texto.
