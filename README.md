@@ -34,3 +34,9 @@ These files will run Hunyuan3D-2 in single view mode or multiview mode. Single v
 Model generation will fail if the folder from wich you run Hunyuan got spaces.
 I think is related to this issue [[Issue]: ROCm 6.x doesn't work with space in the path #4329
 ](https://github.com/ROCm/ROCm/issues/4329)
+
+Current Torch 2.8 doesn't work. Previous version 2.8.0.dev20250525+rocm6.4 used to work but it is no longer available. With torch 2.7.0 version it works.
+
+Texture generation fails when integrated+dedicated gpus are present. Disabling it in bios fixed this issue.
+
+
