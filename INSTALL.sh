@@ -6,6 +6,7 @@ read gpu
 
 #Install requirements
 python3 -m ensurepip
+python3 -m pip install torch==2.7.1 torchvision==0.22.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/rocm6.4
 python3 -m pip install -r requirements.txt
 
 #Configure for AMD GPus

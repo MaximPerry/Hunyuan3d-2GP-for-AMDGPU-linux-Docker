@@ -28,25 +28,38 @@ docker run -it --name hunyuan3d \
   -v /DATA/AppData/Hunyuan3D-2:/dockerx \
   rocm/pytorch:rocm6.4.3_ubuntu22.04_py3.10_pytorch_release_2.6.0
 ```
+This will create the docker container, and should bring you directly insider the shell of this newly created container.
 
-2. Clone this repo:
+2. From inside the container, clone this repo:
 ```
+cd /dockerx
 git clone https://github.com/MaximPerry/Hunyuan3d-2-for-AMDGPU-linux-Docker.git
 ```
 
 3. Run the install script:
 ```
-cd Hunyuan3d-2-for-AMDGPU-linux
+cd Hunyuan3d-2-for-AMDGPU-linux-Docker
+chmod +x INSTALL.sh
 ./INSTALL.sh
 ```
-You will be asked for the port you wish to use as host to the local Gradio App.
+You will be asked for the the name of your AMD GPU, and the port you wish to use as host the app.
 Wait to the installation script to download and install all dependencies.
 
-
-
 ## Launching Hunyuan3D-2
-Once installed, you will have two .desktop files in the Hunyuan3d-2-for-AMDGPU-linux Folder.
-These files will run Hunyuan3D-2 in single view mode or multiview mode. Single view mode will also be able to generate 3D models from text input.
+Once installed, you can launch either hunyuan.sh (text / single image to 3D model) or hunyuan-mv.sh (multi images to 3D model) located in the newly created folder:
+```
+cd Hunyuan3D-2
+./hunyuan.sh
+```
+... or ...
+```
+cd Hunyuan3D-2
+./hunyuan-mv.sh
+```
+
+## Final setup for CasaOS
+Now, we have a container that works, but we need to manually launch Hunyuan3D-2 every time the container starts. Let's officially import it to CasaOS and make it run automatically.
+
 ## Known issues
 Model generation will fail if the folder from wich you run Hunyuan got spaces.
 I think is related to this issue [[Issue]: ROCm 6.x doesn't work with space in the path #4329
