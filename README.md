@@ -1,33 +1,50 @@
 [Español-Spanish](README-ES.md)
 # Hunyuan3D-2 for AMDGPU in linux
-This is a shell script to download and configure Hunyuan3D-2 locally on a linux computer with an AMD GPU.
-To make it works yo must have previously installed ROCM (i've used ROCM 6.4.1 but maybe it can work with other versions). I've used a RX 7900 XTX, if you own other models further modifications may be needed.
+This is a shell script to download and configure Hunyuan3D-2 locally on a linux computer with an AMD GPU inside of Docker, more specifically in the context of CasaOS.
 
-The main problem to make it work is the compilation step of custom_rasterizer, so i provide python wheels compiled for python version 3.10 and 3.13.
+Credits to @dgarcia1985 for creating the original version (none-docker): [Hunyuan3d-2-for-AMDGPU-linux](https://github.com/dgarcia1985/Hunyuan3d-2-for-AMDGPU-linux)
 
-I'm using Ubuntu, but for some reason i was only able to succeed in the compilation in ArchLinux. Once custom_rasterizer is compiled and installed, i can run Hunyuan3D from Ubuntu with no problem.
+This was tested on the following system:
+- Ubuntu Server 22.04 LTS with CasaOS;
+- GPU: AMD Radeon 7600 XT (gfx1102)
+- ROCM: Version 6.10.5 (on host)
 
-## Requirements
 
-Yo need to install Rocm and a few dependencies.
-```
-sudo apt-get install git yad
-```
+## Prerequisites
+1. Make sure AMD drivers are installed on host, with [ROCM support](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/quick-start.html);
 
-[Install ROCM](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/quick-start.html)
 
 ## Installation
-Once you got the dependencies you can clone this repo and execute the Install Script.
+1. Create a new Docker container using the [ROCM + Pytorch](https://hub.docker.com/r/rocm/pytorch) image:
 ```
-git clone https://github.com/dgarcia1985/Hunyuan3d-2-for-AMDGPU-linux.git
+docker run -it --name hunyuan3d \
+  --network=host \
+  --device=/dev/kfd \
+  --device=/dev/dri \
+  --group-add=video \
+  --ipc=host \
+  --cap-add=SYS_PTRACE \
+  --security-opt seccomp=unconfined \
+  -v /DATA/AppData/Hunyuan3D-2:/dockerx \
+  rocm/pytorch:rocm6.4.3_ubuntu22.04_py3.10_pytorch_release_2.6.0
+```
+
+2. Clone this repo:
+```
+git clone https://github.com/MaximPerry/Hunyuan3d-2-for-AMDGPU-linux-Docker.git
+```
+
+3. Run the install script:
+```
 cd Hunyuan3d-2-for-AMDGPU-linux
 ./INSTALL.sh
 ```
-
+You will be asked for the port you wish to use as host to the local Gradio App.
 Wait to the installation script to download and install all dependencies.
-You will be asked to select which python version you want to use and the port you wish to use as host to the local Gradio App.
 
-## Execution
+
+
+## Launching Hunyuan3D-2
 Once installed, you will have two .desktop files in the Hunyuan3d-2-for-AMDGPU-linux Folder.
 These files will run Hunyuan3D-2 in single view mode or multiview mode. Single view mode will also be able to generate 3D models from text input.
 ## Known issues
