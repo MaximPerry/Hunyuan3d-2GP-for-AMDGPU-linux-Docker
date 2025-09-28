@@ -4,17 +4,24 @@
 echo "Enter your AMD GPU name (e.g.: gfx1102): "
 read gpu
 
-#Use specific version of pythone
+#Use specific version of python
 #tar xvf python/py310.tar.xz
 #mv Python-3.10.17 py310
 #export PATH="$PWD/py310/bin:$PATH"
 
-#Use specific version of pythone
-tar xvf python/py310.tar.xz
-cd Python-3.10.17
-./configure --prefix=$PWD/py310 --enable-optimizations
-make -j$(nproc)
-make install
+#Use specific version of python
+#tar xvf python/py310.tar.xz
+#mv Python-3.10.17 py310
+#cd py310
+#./configure --prefix=$PWD/py310 --enable-optimizations
+#make -j$(nproc)
+#make install
+#cd ..
+
+#Compile custom_rasterizer module specific to this container
+apt-get update
+apt-get install -y build-essential python3.10-dev
+
 
 #Install requirements
 python3 -m ensurepip
@@ -39,10 +46,19 @@ python3 setup.py install
 cd ../../../
 
 #Custom python wheels for AMD 
-python3 -m pip install ../wheels/custom_rasterizer-0.1-py310-none-manylinux_2_39_x86_64.whl
-python3 -m pip install gradio==5.33.0 opencv-python==4.9.0.80 opencv-python-headless==4.10.0.84 numpy==1.26.4
-python3 -m pip install jmespath 
-cd ..
+#python3 -m pip install ../wheels/custom_rasterizer-0.1-py310-none-manylinux_2_39_x86_64.whl
+#python3 -m pip install gradio==5.33.0 opencv-python==4.9.0.80 opencv-python-headless==4.10.0.84 numpy==1.26.4
+#python3 -m pip install jmespath 
+#cd ..
+
+# Build & install custom_rasterizer from source instead of using prebuilt wheel
+cd Hunyuan3D-2/hy3dgen/texgen/differentiable_renderer/
+python3 -m pip install --upgrade pip setuptools wheel
+python3 -m pip install .
+cd ../../../
+
+# Other Python deps
+python3 -m pip install gradio==5.33.0 opencv-python==4.9.0.80 opencv-python-headless==4.10.0.84 numpy==1.26.4 jmespath
 
 #Ask user for desired port
 echo "What port do you want this app to use?"
