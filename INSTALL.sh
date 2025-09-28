@@ -10,9 +10,9 @@ read gpu
 #export PATH="$PWD/py310/bin:$PATH"
 
 #Use specific version of pythone
-tar xvf Python-3.10.17.tar.xz
+tar xvf python/py310.tar.xz
 cd Python-3.10.17
-./configure --prefix=$PWD/../py310 --enable-optimizations
+./configure --prefix=$PWD/py310 --enable-optimizations
 make -j$(nproc)
 make install
 
