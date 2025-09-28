@@ -4,10 +4,19 @@
 echo "Enter your AMD GPU name (e.g.: gfx1102): "
 read gpu
 
+#Use specific version of pythone
+#tar xvf python/py310.tar.xz
+#mv Python-3.10.17 py310
+#export PATH="$PWD/py310/bin:$PATH"
+
+#Use specific version of pythone
+tar xvf Python-3.10.17.tar.xz
+cd Python-3.10.17
+./configure --prefix=$PWD/../py310 --enable-optimizations
+make -j$(nproc)
+make install
+
 #Install requirements
-tar xvf python/py310.tar.xz
-mv Python-3.10.17 py310
-export PATH="$PWD/py310/bin:$PATH"
 python3 -m ensurepip
 python3 -m pip install torch==2.7.1 torchvision==0.22.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/rocm6.3
 python3 -m pip install -r requirements.txt
