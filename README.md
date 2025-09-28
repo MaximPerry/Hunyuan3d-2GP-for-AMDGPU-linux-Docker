@@ -26,7 +26,7 @@ docker run -it --name hunyuan3d \
   --cap-add=SYS_PTRACE \
   --security-opt seccomp=unconfined \
   -v /DATA/AppData/Hunyuan3D-2:/dockerx \
-  rocm/pytorch:rocm6.4.4_ubuntu22.04_py3.10_pytorch_release_2.7.1
+  rocm/pytorch:rocm6.4.3_ubuntu22.04_py3.10_pytorch_release_2.6.0
 ```
 This will create the docker container, and should bring you directly insider the shell of this newly created container.
 
