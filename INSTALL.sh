@@ -55,7 +55,7 @@ cd ../../../
 cd Hunyuan3D-2/hy3dgen/texgen/differentiable_renderer/
 python3 -m pip install --upgrade pip setuptools wheel
 python3 -m pip install .
-cd ../../../../
+cd ../../../..
 
 # Other Python deps
 python3 -m pip install gradio==5.33.0 opencv-python==4.9.0.80 opencv-python-headless==4.10.0.84 numpy==1.26.4 jmespath
