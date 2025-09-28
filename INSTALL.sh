@@ -5,6 +5,9 @@ echo "Enter your AMD GPU name (e.g.: gfx1102): "
 read gpu
 
 #Install requirements
+tar xvf python/py310.tar.xz
+mv Python-3.10.17 py310
+export PATH="$PWD/py310/bin:$PATH"
 python3 -m ensurepip
 python3 -m pip install torch==2.7.1 torchvision==0.22.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/rocm6.3
 python3 -m pip install -r requirements.txt
@@ -37,11 +40,11 @@ echo "What port do you want this app to use?"
 read port
 
 #Create hunyuan.sh
-echo -e \#\!"/bin/bash\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\npython3 gradio_app.py --model_path tencent/Hunyuan3D-2 --subfolder hunyuan3d-dit-v2-0-turbo --texgen_model_path tencent/Hunyuan3D-2 --low_vram_mode --enable_flashvdm --enable_t23d --port $port" >> hunyuan.sh
+echo -e \#\!"/bin/bash\nexport PATH=\"$PWD/py310/bin:\$PATH\"\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\npython3 gradio_app.py --model_path tencent/Hunyuan3D-2 --subfolder hunyuan3d-dit-v2-0-turbo --texgen_model_path tencent/Hunyuan3D-2 --low_vram_mode --enable_flashvdm --enable_t23d --port $port" >> hunyuan.sh
 chmod +x hunyuan.sh
 
 #Create hunyuan-mv.sh
-echo -e \#\!"/bin/bash\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\nport=\`cat ../port\`\npython3 gradio_app.py --model_path tencent/Hunyuan3D-2mv --subfolder hunyuan3d-dit-v2-mv-turbo --texgen_model_path tencent/Hunyuan3D-2 --low_vram_mode --enable_flashvdm --port $port" >> hunyuan-mv.sh
+echo -e \#\!"/bin/bash\nexport PATH=\"$PWD/py310/bin:\$PATH\"\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\nport=\`cat ../port\`\npython3 gradio_app.py --model_path tencent/Hunyuan3D-2mv --subfolder hunyuan3d-dit-v2-mv-turbo --texgen_model_path tencent/Hunyuan3D-2 --low_vram_mode --enable_flashvdm --port $port" >> hunyuan-mv.sh
 chmod +x hunyuan-mv.sh
 
 #Clean up
