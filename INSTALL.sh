@@ -43,7 +43,6 @@ cd Hunyuan3D-2
 python3 -m pip install -e .
 cd hy3dgen/texgen/differentiable_renderer/
 python3 setup.py install
-cd ../../../
 
 #Custom python wheels for AMD 
 #python3 -m pip install ../wheels/custom_rasterizer-0.1-py310-none-manylinux_2_39_x86_64.whl
@@ -52,10 +51,9 @@ cd ../../../
 #cd ..
 
 # Build & install custom_rasterizer from source instead of using prebuilt wheel
-cd Hunyuan3D-2/hy3dgen/texgen/differentiable_renderer/
 python3 -m pip install --upgrade pip setuptools wheel
 python3 -m pip install .
-cd ../../../..
+cd ../../../../
 
 # Other Python deps
 python3 -m pip install gradio==5.33.0 opencv-python==4.9.0.80 opencv-python-headless==4.10.0.84 numpy==1.26.4 jmespath
@@ -65,11 +63,11 @@ echo "What port do you want this app to use?"
 read port
 
 #Create hunyuan.sh
-echo -e \#\!"/bin/bash\nexport PATH=\"$PWD/py310/bin:\$PATH\"\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\npython3 gradio_app.py --model_path tencent/Hunyuan3D-2 --subfolder hunyuan3d-dit-v2-0-turbo --texgen_model_path tencent/Hunyuan3D-2 --low_vram_mode --enable_flashvdm --enable_t23d --port $port" >> hunyuan.sh
+echo -e \#\!"/bin/bash\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\npython3 gradio_app.py --model_path tencent/Hunyuan3D-2 --subfolder hunyuan3d-dit-v2-0-turbo --texgen_model_path tencent/Hunyuan3D-2 --low_vram_mode --enable_flashvdm --enable_t23d --port $port" >> hunyuan.sh
 chmod +x hunyuan.sh
 
 #Create hunyuan-mv.sh
-echo -e \#\!"/bin/bash\nexport PATH=\"$PWD/py310/bin:\$PATH\"\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\nport=\`cat ../port\`\npython3 gradio_app.py --model_path tencent/Hunyuan3D-2mv --subfolder hunyuan3d-dit-v2-mv-turbo --texgen_model_path tencent/Hunyuan3D-2 --low_vram_mode --enable_flashvdm --port $port" >> hunyuan-mv.sh
+echo -e \#\!"/bin/bash\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\nport=\`cat ../port\`\npython3 gradio_app.py --model_path tencent/Hunyuan3D-2mv --subfolder hunyuan3d-dit-v2-mv-turbo --texgen_model_path tencent/Hunyuan3D-2 --low_vram_mode --enable_flashvdm --port $port" >> hunyuan-mv.sh
 chmod +x hunyuan-mv.sh
 
 #Clean up
