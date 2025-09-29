@@ -14,6 +14,7 @@ apt-get install -y build-essential python3.10-dev
 python3 -m ensurepip
 python3 -m pip install torch==2.7.1 torchvision==0.22.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/rocm6.3
 python3 -m pip install -r requirements.txt
+pip install mmgp
 
 #Configure for AMD GPus
 export FLASH_ATTENTION_TRITON_AMD_ENABLE="TRUE"
@@ -25,8 +26,8 @@ python3 setup.py install
 cd ..
 
 #Clone and configure original repo
-git clone https://github.com/deepbeepmeep/Hunyuan3D-2GP.git
-cd Hunyuan3D-2GP
+git clone https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1.git
+cd Hunyuan3D-2
 python3 -m pip install -e .
 cd hy3dgen/texgen/differentiable_renderer/
 python3 setup.py install
@@ -47,19 +48,19 @@ echo "What port do you want this app to use?"
 read port
 
 #Create hunyuan.sh
-echo -e \#\!"/bin/bash\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\npython3 gradio_app.py --model_path tencent/Hunyuan3D-2GP --subfolder hunyuan3d-dit-v2-0-turbo --texgen_model_path tencent/Hunyuan3D-2GP --low_vram_mode --enable_flashvdm --enable_t23d --port $port" >> hunyuan.sh
+echo -e \#\!"/bin/bash\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\npython3 gradio_app.py --model_path tencent/Hunyuan3D-2 --subfolder hunyuan3d-dit-v2-0-turbo --texgen_model_path tencent/Hunyuan3D-2 --low_vram_mode --enable_flashvdm --enable_t23d --port $port" >> hunyuan.sh
 chmod +x hunyuan.sh
 
 #Create hunyuan-mv.sh
-echo -e \#\!"/bin/bash\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\nport=\`cat ../port\`\npython3 gradio_app.py --model_path tencent/Hunyuan3D-2mv --subfolder hunyuan3d-dit-v2-mv-turbo --texgen_model_path tencent/Hunyuan3D-2GP --low_vram_mode --enable_flashvdm --port $port" >> hunyuan-mv.sh
+echo -e \#\!"/bin/bash\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\nport=\`cat ../port\`\npython3 gradio_app.py --model_path tencent/Hunyuan3D-2mv --subfolder hunyuan3d-dit-v2-mv-turbo --texgen_model_path tencent/Hunyuan3D-2 --low_vram_mode --enable_flashvdm --port $port" >> hunyuan-mv.sh
 chmod +x hunyuan-mv.sh
 
 #Clean up
 rm -rf wheels
 rm -rf flash-attention
-#mv -f gradio_app.py Hunyuan3D-2GP/gradio_app.py
-mv -f hunyuan.sh Hunyuan3D-2GP/hunyuan.sh
-mv -f hunyuan-mv.sh Hunyuan3D-2GP/hunyuan-mv.sh
+mv -f gradio_app.py Hunyuan3D-2/gradio_app.py
+mv -f hunyuan.sh Hunyuan3D-2/hunyuan.sh
+mv -f hunyuan-mv.sh Hunyuan3D-2/hunyuan-mv.sh
 rm  requirements.txt
 rm  README.md
 rm  INSTALL.sh
