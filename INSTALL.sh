@@ -63,7 +63,7 @@ chmod +x hunyuan-mv.sh
 #Clean up
 rm -rf wheels
 rm -rf flash-attention
-mv -f gradio_app.py Hunyuan3D-2GP/gradio_app.py
+#mv -f gradio_app.py Hunyuan3D-2GP/gradio_app.py
 mv -f hunyuan.sh Hunyuan3D-2GP/hunyuan.sh
 mv -f hunyuan-mv.sh Hunyuan3D-2GP/hunyuan-mv.sh
 rm  requirements.txt
