@@ -48,12 +48,12 @@ Wait to the installation script to download and install all dependencies.
 ## Launching Hunyuan3D-2
 Once installed, you can launch either hunyuan.sh (text / single image to 3D model) or hunyuan-mv.sh (multi images to 3D model) located in the newly created folder:
 ```
-cd Hunyuan3D-2
+cd Hunyuan3D-2GP
 ./hunyuan.sh
 ```
 ... or ...
 ```
-cd Hunyuan3D-2
+cd Hunyuan3D-2GP
 ./hunyuan-mv.sh
 ```
 

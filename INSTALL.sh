@@ -48,7 +48,12 @@ echo "What port do you want this app to use?"
 read port
 
 #Create hunyuan.sh
-echo -e \#\!"/bin/bash\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\npython3 gradio_app.py --model_path tencent/Hunyuan3D-2GP --subfolder hunyuan3d-dit-v2-0-turbo --texgen_model_path tencent/Hunyuan3D-2GP --low_vram_mode --enable_flashvdm --enable_t23d --port $port" >> hunyuan.sh
+#echo -e \#\!"/bin/bash\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\npython3 gradio_app.py --model_path tencent/Hunyuan3D-2GP --subfolder hunyuan3d-dit-v2-0-turbo --texgen_model_path tencent/Hunyuan3D-2GP --low_vram_mode --enable_flashvdm --enable_t23d --port $port" >> hunyuan.sh
+echo "Which memory saving profile do you want to use? (1-5): "
+read profile
+
+echo -e \#\!"/bin/bash\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\npython3 gradio_app.py --profile $profile --turbo --enable_flashvdm --enable_t23d --port $port" >> hunyuan.sh
+
 chmod +x hunyuan.sh
 
 #Create hunyuan-mv.sh
