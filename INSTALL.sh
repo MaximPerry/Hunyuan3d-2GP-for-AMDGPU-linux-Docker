@@ -26,7 +26,7 @@ python3 setup.py install
 cd ..
 
 #Clone and configure original repo
-git clone https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1.git
+git clone https://github.com/Tencent-Hunyuan/Hunyuan3D-2.git
 cd Hunyuan3D-2
 python3 -m pip install -e .
 cd hy3dgen/texgen/differentiable_renderer/
