@@ -33,7 +33,7 @@ This will create the docker container, and should bring you directly insider the
 2. From inside the container, clone this repo:
 ```
 cd /dockerx
-git clone https://github.com/MaximPerry/Hunyuan3d-2-for-AMDGPU-linux-Docker.git
+git clone https://github.com/MaximPerry/Hunyuan3d-2GP-for-AMDGPU-linux-Docker.git
 ```
 
 3. Run the install script:
@@ -45,7 +45,7 @@ chmod +x INSTALL.sh
 You will be asked for the the name of your AMD GPU, and the port you wish to use as host the app.
 Wait to the installation script to download and install all dependencies.
 
-## Launching Hunyuan3D-2
+## Launching Hunyuan3D-2GP
 Once installed, you can launch either hunyuan.sh (text / single image to 3D model) or hunyuan-mv.sh (multi images to 3D model) located in the newly created folder:
 ```
 cd Hunyuan3D-2GP
