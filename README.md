@@ -38,7 +38,7 @@ git clone https://github.com/MaximPerry/Hunyuan3d-2GP-for-AMDGPU-linux-Docker.gi
 
 3. Run the install script:
 ```
-cd Hunyuan3d-2-for-AMDGPU-linux-Docker
+cd Hunyuan3d-2GP-for-AMDGPU-linux-Docker
 chmod +x INSTALL.sh
 ./INSTALL.sh
 ```
