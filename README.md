@@ -1,5 +1,5 @@
 [Español-Spanish](README-ES.md)
-# Hunyuan3D-2 for AMDGPU in linux
+# Hunyuan3D-2GP for AMDGPU in linux
 This is a shell script to download and configure Hunyuan3D-2GP locally on a linux computer with an AMD GPU inside of Docker, more specifically in the context of CasaOS.
 
 Credits to @dgarcia1985 for creating the original version (none-docker): [Hunyuan3d-2-for-AMDGPU-linux](https://github.com/dgarcia1985/Hunyuan3d-2-for-AMDGPU-linux)
@@ -48,12 +48,12 @@ Wait to the installation script to download and install all dependencies.
 ## Launching Hunyuan3D-2
 Once installed, you can launch either hunyuan.sh (text / single image to 3D model) or hunyuan-mv.sh (multi images to 3D model) located in the newly created folder:
 ```
-cd Hunyuan3D-2
+cd Hunyuan3D-2GP
 ./hunyuan.sh
 ```
 ... or ...
 ```
-cd Hunyuan3D-2
+cd Hunyuan3D-2GP
 ./hunyuan-mv.sh
 ```
 
