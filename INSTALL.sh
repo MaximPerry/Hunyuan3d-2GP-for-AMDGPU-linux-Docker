@@ -12,7 +12,7 @@ apt-get install -y build-essential python3.10-dev
 
 #Install general requirements
 python3 -m ensurepip
-python3 -m pip install torch==2.7.1 torchvision==0.22.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/rocm6.3
+python3 -m pip install torch==2.7.1 torchvision==0.22.1 torchaudio==2.7.1 --index-url https://download.pytorch.org/whl/
 python3 -m pip install -r requirements.txt
 python3 -m pip install mmgp
 
@@ -52,12 +52,14 @@ read port
 echo "Which memory saving profile do you want to use? (1-5): "
 read profile
 
+# --mc_algo mc
+
 #Create hunyuan.sh
-echo -e \#\!"/bin/bash\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\npython3 gradio_app.py --profile $profile --turbo --enable_flashvdm --enable_t23d --port $port" >> hunyuan.sh
+echo -e \#\!"/bin/bash\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\npython3 gradio_app.py --profile $profile --turbo --mc_algo mc --enable_flashvdm --enable_t23d --port $port" >> hunyuan.sh
 chmod +x hunyuan.sh
 
 #Create hunyuan-mv.sh
-echo -e \#\!"/bin/bash\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\npython3 gradio_app.py --model_path tencent/Hunyuan3D-2GPmv --subfolder hunyuan3d-dit-v2-mv-turbo --texgen_model_path tencent/Hunyuan3D-2GP --low_vram_mode --enable_flashvdm --port $port" >> hunyuan-mv.sh
+echo -e \#\!"/bin/bash\nexport FLASH_ATTENTION_TRITON_AMD_ENABLE=\"TRUE\"\nexport GPU_ARCHS=\"$gpu\"\npython3 gradio_app.py --model_path tencent/Hunyuan3D-2GPmv --subfolder hunyuan3d-dit-v2-mv-turbo --texgen_model_path tencent/Hunyuan3D-2GP --low_vram_mode --mc_algo mc --enable_flashvdm --mv --port $port" >> hunyuan-mv.sh
 chmod +x hunyuan-mv.sh
 
 #Clean up
